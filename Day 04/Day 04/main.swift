@@ -17,9 +17,7 @@ extension Substring {
 
     var isExtraValidPassphrase: Bool {
         let words = self.split(separator: " ")
-        let extraUnique = Set(words.map { word -> Set<Character> in
-            return Set(word)
-        })
+        let extraUnique = Set(words.map { $0.sorted().map(String.init).joined() })
         return words.count == extraUnique.count
     }
 }
