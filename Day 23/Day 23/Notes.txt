@@ -1,0 +1,39 @@
+[ 0] set b 81       B = 81
+[ 1] set c b        C = B
+[ 2] jnz a 2        if A != 0 goto [ 4]
+[ 3] jnz 1 5        goto [ 8]
+
+[ 4] mul b 100      B = B * 100
+[ 5] sub b -100000  B = B + 100_000
+[ 6] set c b        C = B
+[ 7] sub c -17000   C = C + 17_000
+
+[ 8] set f 1        F = 1
+[ 9] set d 2        D = 2
+
+[10] set e 2        E = 2
+
+[11] set g d        G = D
+[12] mul g e        G = G * E
+[13] sub g b        G = G - B
+[14] jnz g 2        if G != 0 goto [16] // skip next
+[15] set f 0        F = 0
+[16] sub e -1       E = E + 1
+[17] set g e        G = E
+[18] sub g b        G = G - B
+[19] jnz g -8       if G != 0 goto [11]
+
+[20] sub d -1       D = D + 1
+[21] set g d        G = D
+[22] sub g b        G = G - B
+[23] jnz g -13      if G != 0 goto [10]
+
+[24] jnz f 2        if F != 0 goto [26] // skip next
+[25] sub h -1       H = H + 1
+[26] set g b        G = B
+[27] sub g c        G = G - C
+[28] jnz g 2        if G != 0 goto [30] // skip next
+[29] jnz 1 3     <-- HALT
+
+[30] sub b -17      B = B + 17
+[31] jnz 1 -23      goto [ 8]
